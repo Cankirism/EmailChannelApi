@@ -11,7 +11,6 @@ public class QueueReaderService:BackgroundService
         _mailService=mailService;
         _logger=logger;
     }
-
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         while(!stoppingToken.IsCancellationRequested){
@@ -19,8 +18,6 @@ public class QueueReaderService:BackgroundService
            var mail =  await _queueService.DeQueue(stoppingToken);
            await _mailService.Send(mail);
            _logger.LogInformation($"{mail.Subject} konulu mail gönderildi");
-
-
         }
     }
 }
