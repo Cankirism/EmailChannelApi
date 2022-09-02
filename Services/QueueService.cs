@@ -16,10 +16,8 @@ public class QueueService : IQueueService
     {
         // null kayıt gelirse hata fırlat 
         ArgumentNullException.ThrowIfNull(mail);
-        await queue.Writer.WriteAsync(mail);
-       
+        await queue.Writer.WriteAsync(mail); 
     }
-
     public async Task<Mail> DeQueue(CancellationToken cancellationToken)
     {
         var item =  await queue.Reader.ReadAsync(cancellationToken);
